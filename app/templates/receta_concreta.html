@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table class="table">
+ <tr>
+        <th>Nombre</th>
+        <th>Preparación</th>
+	<th>Imagen</th>
+    </tr>
+    <tr>
+        <td>{{ receta.nombre }}</td>
+        <td>{{ receta.preparación }}</td>
+	<th><img src="{{ receta.foto.url }}" width="120" /></th>
+       
+    </tr>
+</table>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "boot.html" %}
+
+{% block full %}
+
+    <h1>Recetas</h1>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Nombre</th>
+            <th>Preparación</th>
+            <th>Imagen</th>
+            <th>Acciones</th>
+        </tr>
+        {% for receta in recetas %}
+        <tr>
+            <td>{{ receta.nombre }}</td>
+            <td>{{ receta.preparación }}</td>
+        <th><img src="{{ receta.foto.url }}" width="120" /></th>
+            <td>
+                <a class="btn btn-primary" href="{% url 'receta_edit' pk=receta.pk%}">Editar</a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ receta.pk }}">
+                    Borrar
+                </button>
+                  
+                
+                <div class="modal fade" id="exampleModal{{ receta.pk }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Desea borrar esta receta? {{ receta.nombre }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <a class="btn btn-danger" href="{% url 'receta_delete' pk=receta.pk %}">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        
+        </tr>
+        
+
+        {% endfor %}
+    </table>
+
+{% endblock %}

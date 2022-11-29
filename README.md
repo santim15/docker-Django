@@ -1,2 +1,1 @@
-# docker-DAI
 # docker-Django

@@ -1,0 +1,23 @@
+{% extends "boot.html" %}
+
+{% block receta_new %}
+<h2>Delete Receta</h2>
+<h3>¿Estás seguro que quieres borrar esta receta?</h3>
+<table class="table">
+  <tr>
+         <th>Nombre</th>
+         <th>Preparación</th>
+   <th>Imagen</th>
+     </tr>
+     <tr>
+         <td>{{ receta.nombre }}</td>
+         <td>{{ receta.preparación }}</td>
+   <th><img src="{{ receta.foto.url }}" width="120" /></th>
+        
+     </tr>
+ </table>
+ <form action="" method="POST">
+  {% csrf_token %}
+  <input class="btn btn-default btn-danger" name="delete" type="submit" value="Delete"/>
+</form>
+{% endblock %}
