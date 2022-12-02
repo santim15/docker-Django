@@ -25,10 +25,14 @@
             <td>{{ receta.preparación }}</td>
         <th><img src="{{ receta.foto.url }}" width="120" /></th>
             <td>
+                {% if user.is_staff %}
                 <a class="btn btn-primary" href="{% url 'receta_edit' pk=receta.pk%}">Editar</a>
+                {% endif %}
+                {% if user.is_superuser %}
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal{{ receta.pk }}">
                     Borrar
                 </button>
+                {% endif %}
                   
                 
                 <div class="modal fade" id="exampleModal{{ receta.pk }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -1,3 +1,5 @@
+# recetas/views.py
+from django.shortcuts import  HttpResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.template import loader
@@ -7,9 +9,8 @@ from django.contrib import messages
 from .models import Receta
 from .forms import RecetaForm
 
-# recetas/views.py
+from django.views.generic import TemplateView
 
-from django.shortcuts import  HttpResponse
 
 # Create your views here.
 
@@ -28,13 +29,6 @@ def recetas(request):
 ############################
 def boot(request):
     return render(request, 'boot.html', {})
-
-#def receta_concreta(request, name):
- #   if Receta.objects.filter(nombre = name).exists():
- #       receta = Receta.objects.get(nombre = name)
- #       return render(request, 'receta_concreta.html', {'receta': receta})
- #   else:
- #       return HttpResponse('ERROR 404, Receta no existente.')
 
 ############################  
 #Receta búsqueda
@@ -105,3 +99,6 @@ def receta_delete(request, pk):
      #       return render(request, 'error.html', {})
     #else:
     #    return render(request, 'recetas.html', {})
+
+class Home(TemplateView):
+    template_name = 'home.html'

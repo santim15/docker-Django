@@ -1,3 +1,4 @@
 # requirements.txt
 django==4.1.1
 Pillow
+django-allauth==0.43.0

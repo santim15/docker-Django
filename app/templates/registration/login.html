@@ -1,0 +1,10 @@
+{% extends "boot.html" %}
+
+{% block login %}
+    <h2>Iniciar Sesión como Usuario</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log In</button>
+    </form>
+{% endblock %}

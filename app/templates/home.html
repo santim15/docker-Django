@@ -1,0 +1,21 @@
+{% extends "boot.html" %}
+{% load socialaccount %}
+{% block login %}
+    <h1>Recetas Django</h1>
+    {% if user.is_authenticated %}
+        <h3>¡¡¡ Bienvenido {{ user.username }} !!!</h3>
+        {% if user.is_superuser %}
+        <p>Puedes hacer de todo: Añadir, Editar y Borrar.</p>
+        {% elif user.is_staff %}
+        <p>Puedes Editar las recetas únicamente.</p>
+        {% else %}
+        <p>Solo puedes mirar.</p>
+        {% endif %}
+        <p><a class="btn btn-danger" href="{% url 'logout' %}">Log Out</a></p>
+    {% else %}
+        <p> </p>
+        <h3>Inicio de Sesión</h3>
+        <a class="btn btn-primary" href="{% url 'login' %}">Entrar como usuario</a>
+        <a class="btn btn-dark" href="{% provider_login_url 'github' %}">Entrar con Cuenta de GitHub</a>
+    {% endif %}
+{% endblock %}
